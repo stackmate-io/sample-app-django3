@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div>
+  <h1>Incidents report</h1>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th class="align-center">Date</th>
+      <th class="align-center">Resolved?</th>
+    </tr>
+  </thead>
+{% for incident in incidents %}
+  <tr>
+    <td>
+      #{{ incident.id }}
+    </td>
+    <td>
+      {{ incident.title }}
+    </td>
+    <td class="align-center">
+      {{ incident.occurred_at }}
+    </td>
+    <td class="align-center">
+      {% if incident.is_resolved %}Yes{% else %}No{% endif %}
+    </td>
+  </tr>
+{% endfor %}
+  <tfoot>
+    <tr>
+      <td colspan="4">
+        {{ incidents | length }} incidents in total
+      </td>
+    </tr>
+  </tfoot>
+<table>
+{% endblock %}
