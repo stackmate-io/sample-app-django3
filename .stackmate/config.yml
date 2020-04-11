@@ -37,8 +37,9 @@ production:
   pipeline:
     build:
       - pip install -r requirements.txt
+      - python manage.py collectstatic --noinput
+    db:migrate:
       - python manage.py migrate
-      - python manage.py collectstatic
     after:
       restart:
         - gunicorn
@@ -52,6 +53,7 @@ production:
       dependencies:
         - type: nginx
         - type: gunicorn
+          appname: django3app.wsgi
         - type: python
       storage: 20
 
@@ -68,11 +70,11 @@ production:
         DB_HOST: "{{host}}"
         DB_PASS: "{{password}}"
 
-notifications:
-  - type: email
-    targets:
-      - stackmateuser@mailinator.com
+# notifications:
+#   - type: email
+#     targets:
+#       - stackmateuser@mailinator.com
 
-  - type: slack
-    targets:
-      - deployments-channel
+#   - type: slack
+#     targets:
+#       - deployments-channel

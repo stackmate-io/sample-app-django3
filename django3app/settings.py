@@ -25,7 +25,9 @@ SECRET_KEY = '3bc=dm@ke9ich$d(5z+^+wuv^s7w6n11c_95q($o=utd48ajeu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'django.ezploy.eu',
+]
 
 
 # Application definition
