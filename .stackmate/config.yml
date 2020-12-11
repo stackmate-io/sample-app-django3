@@ -50,11 +50,15 @@ production:
     - name: django-app-server
       type: application
       size: t2.nano
+      reference: service-1
       dependencies:
         - type: nginx
+          reference: dependency-1
         - type: gunicorn
           appname: django3app.wsgi
+          reference: dependency-2
         - type: python
+          reference: dependency-3
       storage: 20
 
     - name: django-app-mysql-db
@@ -62,6 +66,7 @@ production:
       version: 5.7
       size: db.t3.micro
       storage: 100
+      reference: service-2
       databases:
         - djangoapp
       environment:
