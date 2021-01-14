@@ -1,1 +1,1 @@
-Sample Django app
+Sample Django 3+ app
