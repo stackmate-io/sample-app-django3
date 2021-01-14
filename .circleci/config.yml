@@ -1,0 +1,25 @@
+version: 2.1
+orbs:
+  python: circleci/python@1.0.0
+jobs:
+  build:
+    docker:
+      - image: cimg/python:3.6.10
+        environment:
+          DATABASE_URL: mysql://root@localhost/stackmate_circle-test?sslmode=disable
+      - image: circleci/mysql:5.7
+        environment:
+          MYSQL_USER: root
+          MYSQL_DB: stackmate_circle-test
+    steps:
+      - checkout
+      - python/install-packages
+      - run:
+          name: Run django tests
+          command: |
+            pipenv run python manage.py test
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
+          destination: tr1
