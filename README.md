@@ -1,1 +1,2 @@
 Sample Django app
+
