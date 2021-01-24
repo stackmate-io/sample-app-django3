@@ -87,7 +87,6 @@ local_settings.py
 
 .env
 db.sqlite3
-static/*
 !static/.keep
-.stackmate/state.yml
-.stackmate/vault.yml
+.stackmate/*
+!.stackmate/config.yml
